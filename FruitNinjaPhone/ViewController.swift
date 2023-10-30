@@ -28,6 +28,7 @@ class ViewController: NSViewController {
         if let window = self.view.window {
             window.styleMask.remove(.resizable)
         }
+        loadGameScence()
     }
     
     // load the game scence

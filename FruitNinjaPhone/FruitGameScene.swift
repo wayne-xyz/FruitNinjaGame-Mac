@@ -154,7 +154,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate{
       // this version is about the static position that use blade to cut the fruit
       func addFruits(){
           let fruitNode = SKSpriteNode(imageNamed: WATERMELON_IMAGENAME)
-          fruitNode.size=CGSize(width: size.width*0.1, height: size.width*0.1)
+          fruitNode.size=CGSize(width: size.width*0.05, height: size.width*0.05)
           // position for fruit is random and in the whole
           fruitNode.physicsBody=SKPhysicsBody(rectangleOf: fruitNode.size)
           fruitNode.position=randomFruitsPosition()
