@@ -4,6 +4,7 @@
 //
 //  Created by RongWei Ji on 10/23/23.
 //
+// this is main viewcontroller to show game
 
 import Cocoa
 import SpriteKit
@@ -42,6 +43,10 @@ class ViewController: NSViewController {
         skView.presentScene(scene)
     }
     
+    func segueToSettingVC(){
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+            
+    }
     
     
     
