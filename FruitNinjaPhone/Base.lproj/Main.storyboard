@@ -730,8 +730,11 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="connectAction:" target="m8L-1a-mde" id="qTh-e6-HTy"/>
+                                </connections>
                             </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhy-Za-8Cb">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhy-Za-8Cb">
                                 <rect key="frame" x="153" y="111" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="iPhone did not conncet" id="wsR-er-2NC">
@@ -742,6 +745,10 @@
                             </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="connectAction" destination="JlN-LV-GzE" id="33t-ck-7o8"/>
+                        <outlet property="inforLabel" destination="2bI-th-NYc" id="jHr-ZH-VBF"/>
+                    </connections>
                 </viewController>
                 <customObject id="sXo-qh-a2v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

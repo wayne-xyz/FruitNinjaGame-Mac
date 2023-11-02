@@ -8,12 +8,31 @@
 
 import Cocoa
 import SpriteKit
+import MultipeerConnectivity
 
-class ViewController: NSViewController {
+class ViewController: NSViewController , ConnectManagerDelegate {
+    func didReceiveMessage(_ message: String, from peer: MCPeerID) {
+        print("macconnect recived:\(message)")
+    }
+    
+    func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
+        print("macconnect statues:\(isConnected)")
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
+       
+        
+        //test for send a message
+        
+        ConnectManager.shared.delegate = self
+        ConnectManager.shared.start()
+        if let session = ConnectManager.shared.session, !session.connectedPeers.isEmpty {
+            ConnectManager.shared.send(message: "hello world, I am machost", to: session.connectedPeers)
+        }
+       
        
         // Do any additional setup after loading the view.
     }

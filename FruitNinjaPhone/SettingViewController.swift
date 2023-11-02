@@ -11,11 +11,21 @@ import Cocoa
 
 class SettingViewController: NSViewController {
 
+    @IBOutlet weak var connectAction: NSButton!
+    
+    @IBOutlet var inforLabel: NSView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    @IBAction func connectAction(_ sender: Any) {
+    }
     
+    
+    func connectiPhone(){
+        
+    }
     
 }
