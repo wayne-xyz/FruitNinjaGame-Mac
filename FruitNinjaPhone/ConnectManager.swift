@@ -89,17 +89,14 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
        // part for mac
-        print("this is a MCPeerID\(peerID)")  // print the id
-        browser.invitePeer(peerID, to: session!, withContext: nil, timeout: 30)
+       
+        if peerID.displayName=="iosGameApp"{
+            browser.invitePeer(peerID, to: session!, withContext: nil, timeout: 30)
+            print("Mac app is connecting:\(peerID)")  // print the id
+        }
+    
         
-        // part for ios
-//        browser.invitePeer(peerID, to: yourMCSessionInstance, withContext: nil, timeout: 30) { (accepted, session) in
-//                if accepted {
-//                    // The invitation was accepted
-//                    // You can now use the session for communication
-//                }
-//        }
-        
+
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {

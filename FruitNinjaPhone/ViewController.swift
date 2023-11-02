@@ -5,6 +5,8 @@
 //  Created by RongWei Ji on 10/23/23.
 //
 // this is main viewcontroller to show game
+// ios - advertising          - done- accept invite- done
+// mac - browsing(discovering)- done- invite       - done
 
 import Cocoa
 import SpriteKit
