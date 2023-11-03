@@ -32,7 +32,7 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
         myPeerId = MCPeerID(displayName: "MacGameHost")
         super.init()
         
-        session = MCSession(peer: myPeerId)
+        session = MCSession(peer: myPeerId,securityIdentity: nil, encryptionPreference: MCEncryptionPreference.none)
         session?.delegate = self
         
         advertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
@@ -43,8 +43,13 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
     }
     
     func start() {
-        advertiser?.startAdvertisingPeer()
+        //advertiser?.startAdvertisingPeer()
         browser?.startBrowsingForPeers()
+    }
+    
+    func stop(){
+     //   advertiser?.stopAdvertisingPeer()
+        browser?.stopBrowsingForPeers()
     }
     
     func send(message: String, to peers: [MCPeerID]) {
@@ -63,6 +68,17 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         let isConnected = (state == .connected)
         delegate?.didChangeConnectionState(peer: peerID, isConnected: isConnected)
+       
+        switch state {
+           case .connected:
+             print("Connected \(session.connectedPeers)")
+           case .notConnected:
+             print("Not connected: \(peerID.displayName)")
+           case .connecting:
+             print("Connecting to: \(peerID.displayName)")
+           @unknown default:
+             print("Unknown state: \(state)")
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
@@ -92,15 +108,15 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
        
         if peerID.displayName=="iosGameApp"{
             browser.invitePeer(peerID, to: session!, withContext: nil, timeout: 30)
-            print("Mac app is connecting:\(peerID)")  // print the id
+            print("Mac app is invitePeer:\(peerID)")  // print the id
         }
     
-        
 
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         // Handle lost peers if needed
+        print("Mac app lost connecting:\(peerID)")
     }
 }
 

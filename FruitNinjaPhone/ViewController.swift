@@ -8,6 +8,9 @@
 // ios - advertising          - done- accept invite- done
 // mac - browsing(discovering)- done- invite       - done
 
+// setting in xcode:
+//Enable App Sandbox:
+
 import Cocoa
 import SpriteKit
 import MultipeerConnectivity
@@ -18,7 +21,13 @@ class ViewController: NSViewController , ConnectManagerDelegate {
     }
     
     func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
-        print("macconnect statues:\(isConnected)")
+        
+        if isConnected{
+         //   ConnectManager.shared.stop()
+        }else{
+            
+        }
+       
     }
     
 
@@ -65,7 +74,7 @@ class ViewController: NSViewController , ConnectManagerDelegate {
     }
     
     func segueToSettingVC(){
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        _ = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
             
     }
     
