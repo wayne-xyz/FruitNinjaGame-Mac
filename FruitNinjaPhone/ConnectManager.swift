@@ -43,7 +43,7 @@ class ConnectManager: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDele
     }
     
     func start() {
-        //advertiser?.startAdvertisingPeer()
+        advertiser?.startAdvertisingPeer()
         browser?.startBrowsingForPeers()
     }
     
