@@ -11,6 +11,9 @@
 		CC1C5F592AE6FBFE0015C5CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C5F582AE6FBFE0015C5CF /* ViewController.swift */; };
 		CC1C5F5B2AE6FC020015C5CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC1C5F5A2AE6FC020015C5CF /* Assets.xcassets */; };
 		CC1C5F5E2AE6FC020015C5CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1C5F5C2AE6FC020015C5CF /* Main.storyboard */; };
+		CC1C5F662AE6FE300015C5CF /* FruitGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */; };
+		CC8CE7282AF6E7A0003467F0 /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CC8CE7272AF6E7A0003467F0 /* hitSound.wav */; };
+		CCFD62A22AF041A700F2E4C7 /* ConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFD62A12AF041A700F2E4C7 /* ConnectManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		CC1C5F5A2AE6FC020015C5CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC1C5F5D2AE6FC020015C5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC1C5F5F2AE6FC020015C5CF /* FruitNinjaPhone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FruitNinjaPhone.entitlements; sourceTree = "<group>"; };
+		CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitGameScene.swift; sourceTree = "<group>"; };
+		CC8CE7272AF6E7A0003467F0 /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
+		CCFD62A12AF041A700F2E4C7 /* ConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +62,10 @@
 				CC1C5F582AE6FBFE0015C5CF /* ViewController.swift */,
 				CC1C5F5A2AE6FC020015C5CF /* Assets.xcassets */,
 				CC1C5F5C2AE6FC020015C5CF /* Main.storyboard */,
+				CCFD62A12AF041A700F2E4C7 /* ConnectManager.swift */,
+				CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */,
 				CC1C5F5F2AE6FC020015C5CF /* FruitNinjaPhone.entitlements */,
+				CC8CE7272AF6E7A0003467F0 /* hitSound.wav */,
 			);
 			path = FruitNinjaPhone;
 			sourceTree = "<group>";
@@ -89,7 +98,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					CC1C5F522AE6FBFE0015C5CF = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -120,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC1C5F5B2AE6FC020015C5CF /* Assets.xcassets in Resources */,
+				CC8CE7282AF6E7A0003467F0 /* hitSound.wav in Resources */,
 				CC1C5F5E2AE6FC020015C5CF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC1C5F592AE6FBFE0015C5CF /* ViewController.swift in Sources */,
+				CC1C5F662AE6FE300015C5CF /* FruitGameScene.swift in Sources */,
 				CC1C5F572AE6FBFE0015C5CF /* AppDelegate.swift in Sources */,
+				CCFD62A22AF041A700F2E4C7 /* ConnectManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,9 +195,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -243,9 +257,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -272,7 +288,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F69WJ27LN4;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 6UV43Z8K8B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -299,7 +316,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F69WJ27LN4;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 6UV43Z8K8B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
