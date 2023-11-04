@@ -19,6 +19,8 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
             moveShurikenFromPhone(message: message)
             print("message:\(message)")
             print("position:\(playerNode.position)")
+        } else{
+            pauseAndRestart()
         }
     }
     
@@ -123,6 +125,9 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
           timer?.invalidate()
           timer=nil
            scoreLabel.fontSize = scoreLabel.fontSize*4
+          if let peers=ConnectManager.shared.session?.connectedPeers{
+              ConnectManager.shared.send(message: "gameover", to: peers)
+          }
       }
       
       
@@ -188,7 +193,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
       
       
       func addGameover(){
-          gameoverImageNode.size=CGSize(width: size.width*0.9, height: size.width*0.9)
+          gameoverImageNode.size=CGSize(width: size.width*0.6, height: size.width*0.6)
           gameoverImageNode.position=CGPoint(x: size.width*0.5, y: size.height*0.5)
           addChild(gameoverImageNode)
       }
@@ -202,6 +207,10 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
           if isPaused==false && gameRunning==true{
               scoreNow=scoreNow+1
               playHitSound()
+              if let peers=ConnectManager.shared.session?.connectedPeers{
+                  ConnectManager.shared.send(message: "hit", to: peers)
+              }
+              
               fruit.removeFromParent()
           }
       }
@@ -266,8 +275,8 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
             let moveSpeed: CGFloat = shurikenSpeed
 
             // Adjustment of shuriken position according to acceleration direction
-            let newX = playerNode.position.x + CGFloat(moveXYZ[0]) * moveSpeed
-            let newY = playerNode.position.y + CGFloat(moveXYZ[1]) * moveSpeed
+            let newX = playerNode.position.x + CGFloat(moveXYZ[0]) * moveSpeed*8
+            let newY = playerNode.position.y + CGFloat(moveXYZ[1]) * moveSpeed*8
 
             // Limiting shuriken's range of movement
             let minX = playerNode.size.width / 2
@@ -283,7 +292,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
     }
     
       
-      //pending move of shuriken
+      //orignal way move of shuriken by gyro
       func moveShuriken(acceleration: CMAcceleration) {
           if gameRunning && isPaused==false{           // for the pasuing mode
               let moveSpeed: CGFloat = shurikenSpeed
@@ -348,6 +357,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
         }
         return resultXYZ
     }
+    
     
     
       
