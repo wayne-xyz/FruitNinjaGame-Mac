@@ -14,6 +14,7 @@ import MultipeerConnectivity
 class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
     //from the conncetManager delegate function for receviemessage
     func didReceiveMessage(_ message: String, from peer: MCPeerID) {
+        print(message)
         if message != "Start"{
             moveShurikenFromPhone(message: message)
             print("message:\(message)")
@@ -70,6 +71,8 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
       
       // the skview is initialed and add the player , set the initial setting into scence
       override func didMove(to view: SKView) {
+        ConnectManager.shared.delegate = self
+  
         startGame()
           // start Core Motion
     
@@ -258,7 +261,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
       
     //new func to move the shuriken by the message from iphone
     func moveShurikenFromPhone(message:String){
-        var moveXYZ=xyzValueConvert(messageStr: message)
+        let moveXYZ=xyzValueConvert(messageStr: message)
         if gameRunning && isPaused==false{           // for the pasuing mode
             let moveSpeed: CGFloat = shurikenSpeed
 
@@ -335,7 +338,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
     
     // convert the message from ios, str to
     func xyzValueConvert(messageStr:String)->[Double]{
-        var resultXYZ=[Double]()
+        var resultXYZ=[Double](repeating: 0, count: 3)
         let values = messageStr.components(separatedBy: ",")
         
         if values.count == 3 {

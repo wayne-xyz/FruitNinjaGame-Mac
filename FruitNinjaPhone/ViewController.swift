@@ -20,14 +20,19 @@ class ViewController: NSViewController , ConnectManagerDelegate {
     func didReceiveMessage(_ message: String, from peer: MCPeerID) {
         if(message=="Start"){
             print("macconnect recived:\(message)")
-            loadGameScence()
+            DispatchQueue.main.async{
+                self.loadGameScence()
+                self.promptText.isHidden=true
+            }
         }
     }
     
     func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
         
         if isConnected{
-            self.promptText.stringValue="Connected, start on your phone, Go Ninja!"
+            DispatchQueue.main.async {
+                self.promptText.stringValue="Connected, start on your phone, Go Ninja!"
+            }
         }else{
             print("lost connecting")
         }
