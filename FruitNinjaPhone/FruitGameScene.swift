@@ -9,8 +9,22 @@ import Foundation
 import SpriteKit
 import CoreMotion
 import AVFoundation
+import MultipeerConnectivity
 
-class FruitGameScene:SKScene, SKPhysicsContactDelegate{
+class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
+    //from the conncetManager delegate function for receviemessage
+    func didReceiveMessage(_ message: String, from peer: MCPeerID) {
+        if message != "Start"{
+            moveShurikenFromPhone(message: message)
+            print("message:\(message)")
+            print("position:\(playerNode.position)")
+        }
+    }
+    
+    func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
+        
+    }
+    
     
     //Static properties for the static.
       let SHURIKEN_IMAGENAME:String="Shuriken"
@@ -242,6 +256,29 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate{
           
      }
       
+    //new func to move the shuriken by the message from iphone
+    func moveShurikenFromPhone(message:String){
+        var moveXYZ=xyzValueConvert(messageStr: message)
+        if gameRunning && isPaused==false{           // for the pasuing mode
+            let moveSpeed: CGFloat = shurikenSpeed
+
+            // Adjustment of shuriken position according to acceleration direction
+            let newX = playerNode.position.x + CGFloat(moveXYZ[0]) * moveSpeed
+            let newY = playerNode.position.y + CGFloat(moveXYZ[1]) * moveSpeed
+
+            // Limiting shuriken's range of movement
+            let minX = playerNode.size.width / 2
+            let maxX = size.width - playerNode.size.width / 2
+            let minY = playerNode.size.height / 2
+            let maxY = size.height - playerNode.size.height / 2
+
+            playerNode.position.x = max(minX, min(newX, maxX))
+            playerNode.position.y = max(minY, min(newY, maxY))
+        }
+        
+        
+    }
+    
       
       //pending move of shuriken
       func moveShuriken(acceleration: CMAcceleration) {

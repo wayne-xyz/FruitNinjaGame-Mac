@@ -16,9 +16,10 @@ import SpriteKit
 import MultipeerConnectivity
 
 class ViewController: NSViewController , ConnectManagerDelegate {
+    
     func didReceiveMessage(_ message: String, from peer: MCPeerID) {
-        print("macconnect recived:\(message)")
         if(message=="Start"){
+            print("macconnect recived:\(message)")
             loadGameScence()
         }
     }
@@ -26,21 +27,16 @@ class ViewController: NSViewController , ConnectManagerDelegate {
     func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
         
         if isConnected{
-         //   ConnectManager.shared.stop()
+            self.promptText.stringValue="Connected, start on your phone, Go Ninja!"
         }else{
-            
+            print("lost connecting")
         }
        
     }
     
-    //
-    var status:gameStatus=gameStatus.unconnect
-    enum gameStatus{
-        case unconnect
-        case conneted
-        case gaming
-    }
-
+    @IBOutlet weak var promptText: NSTextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
