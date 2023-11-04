@@ -92,6 +92,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
           // use three type of timer to update the addfruits function , update the time label, update the shuriten movement.
           // runrepeatAction & timer & override update.
           self.run(repeatAction,withKey: ADDFRUIT_KEYNAME)    //when start game directly start the game
+          gameRunning=true
           timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats:true) //for update the game
           NotificationCenter.default.addObserver(self, selector: #selector(scenewillLostFocus(_:)), name: Notification.Name("SceneWillLostFocus"), object: nil) // for receive the segue action
       }
