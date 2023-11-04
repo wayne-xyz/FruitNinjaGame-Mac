@@ -296,7 +296,20 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate{
         }
     }
     
-      
+    // convert the message from ios, str to
+    func xyzValueConvert(messageStr:String)->[Double]{
+        var resultXYZ=[Double]()
+        let values = messageStr.components(separatedBy: ",")
+        
+        if values.count == 3 {
+            resultXYZ[0] = Double(values[0]) ?? 0.0 // for x
+            resultXYZ[1] = Double(values[1]) ?? 0.0// for y
+            resultXYZ[2] = Double(values[2]) ?? 0.0 // for z
+        }
+        return resultXYZ
+    }
+    
+    
       
       // random function for geting the position
     func random()->CGFloat{

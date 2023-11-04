@@ -11,7 +11,6 @@ import Cocoa
 
 class SettingViewController: NSViewController {
 
-    @IBOutlet weak var connectAction: NSButton!
     
     @IBOutlet var inforLabel: NSView!
     
@@ -20,11 +19,11 @@ class SettingViewController: NSViewController {
         // Do view setup here.
     }
     
-    @IBAction func connectAction(_ sender: Any) {
-    }
+
     
     
     func connectiPhone(){
+        
         
     }
     

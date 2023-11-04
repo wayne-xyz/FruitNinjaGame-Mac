@@ -18,6 +18,9 @@ import MultipeerConnectivity
 class ViewController: NSViewController , ConnectManagerDelegate {
     func didReceiveMessage(_ message: String, from peer: MCPeerID) {
         print("macconnect recived:\(message)")
+        if(message=="Start"){
+            loadGameScence()
+        }
     }
     
     func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
@@ -30,20 +33,19 @@ class ViewController: NSViewController , ConnectManagerDelegate {
        
     }
     
+    //
+    var status:gameStatus=gameStatus.unconnect
+    enum gameStatus{
+        case unconnect
+        case conneted
+        case gaming
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       
-        
-        //test for send a message
-        
+
         ConnectManager.shared.delegate = self
         ConnectManager.shared.start()
-        if let session = ConnectManager.shared.session, !session.connectedPeers.isEmpty {
-            ConnectManager.shared.send(message: "hello world, I am machost", to: session.connectedPeers)
-        }
-       
        
         // Do any additional setup after loading the view.
     }
@@ -59,7 +61,6 @@ class ViewController: NSViewController , ConnectManagerDelegate {
         if let window = self.view.window {
             window.styleMask.remove(.resizable)
         }
-        loadGameScence()
     }
     
     // load the game scence
@@ -73,10 +74,7 @@ class ViewController: NSViewController , ConnectManagerDelegate {
         skView.presentScene(scene)
     }
     
-    func segueToSettingVC(){
-        _ = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-            
-    }
+   
     
     
     
