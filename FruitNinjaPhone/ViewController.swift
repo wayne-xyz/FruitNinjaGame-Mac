@@ -15,11 +15,25 @@ import Cocoa
 import SpriteKit
 import MultipeerConnectivity
 
-class ViewController: NSViewController , ConnectManagerDelegate {
+class ViewController: NSViewController , ConnectManager2Delegate {
+    func websocketDidConnect() {
+        changeConnectState(isC: true)
+    }
     
-    func didReceiveMessage(_ message: String, from peer: MCPeerID) {
-        if(message=="Start"){
-            print("macconnect recived:\(message)")
+    func websocketDidDisconnect(error: Error?) {
+        changeConnectState(isC:false)
+    }
+    
+    func websocketDidReceiveMessage(text: String) {
+        receiveMessage(mes: text)
+    }
+    
+    
+
+    
+    func receiveMessage(mes:String){
+        if(mes=="Start"){
+            print("macconnect recived:\(mes)")
             DispatchQueue.main.async{
                 self.loadGameScence()
                 self.promptText.isHidden=true
@@ -27,26 +41,38 @@ class ViewController: NSViewController , ConnectManagerDelegate {
         }
     }
     
-    func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
-        
-        if isConnected{
+    func changeConnectState(isC:Bool){
+        if isC{
             DispatchQueue.main.async {
                 self.promptText.stringValue="Connected, start on your phone, Go Ninja!"
             }
         }else{
             print("lost connecting")
         }
-       
     }
+    
+
     
     @IBOutlet weak var promptText: NSTextField!
     
+    var webSocketManager: ConnectManager2?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let serverURL = URL(string: "http://127.0.0.1:8080")!
+        // Set up the ConnectManager2 with a URL
+        ConnectManager2.shared.configure(with: serverURL)
 
-        ConnectManager.shared.delegate = self
-        ConnectManager.shared.start()
+        // Connect to the WebSocket server
+        ConnectManager2.shared.connect()
+        ConnectManager2.shared.delegate=self
+
+        // Send a message
+        ConnectManager2.shared.send(message: "Hello, server!")
+
+        
+        
        
         // Do any additional setup after loading the view.
     }

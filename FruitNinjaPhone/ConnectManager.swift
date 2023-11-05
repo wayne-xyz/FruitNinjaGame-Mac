@@ -3,7 +3,7 @@
 //  FruitNinjaPhone
 //
 //  Created by RongWei Ji on 10/30/23.
-//
+//use the MultipeerConnectivity
 
 import Foundation
 import MultipeerConnectivity

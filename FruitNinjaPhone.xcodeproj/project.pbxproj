@@ -13,6 +13,7 @@
 		CC1C5F5E2AE6FC020015C5CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1C5F5C2AE6FC020015C5CF /* Main.storyboard */; };
 		CC1C5F662AE6FE300015C5CF /* FruitGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */; };
 		CC8CE7282AF6E7A0003467F0 /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CC8CE7272AF6E7A0003467F0 /* hitSound.wav */; };
+		CC8CE72A2AF70691003467F0 /* ConnectManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8CE7292AF70691003467F0 /* ConnectManager2.swift */; };
 		CCFD62A22AF041A700F2E4C7 /* ConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFD62A12AF041A700F2E4C7 /* ConnectManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		CC1C5F5F2AE6FC020015C5CF /* FruitNinjaPhone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FruitNinjaPhone.entitlements; sourceTree = "<group>"; };
 		CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitGameScene.swift; sourceTree = "<group>"; };
 		CC8CE7272AF6E7A0003467F0 /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
+		CC8CE7292AF70691003467F0 /* ConnectManager2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectManager2.swift; sourceTree = "<group>"; };
 		CCFD62A12AF041A700F2E4C7 /* ConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				CC1C5F652AE6FE300015C5CF /* FruitGameScene.swift */,
 				CC1C5F5F2AE6FC020015C5CF /* FruitNinjaPhone.entitlements */,
 				CC8CE7272AF6E7A0003467F0 /* hitSound.wav */,
+				CC8CE7292AF70691003467F0 /* ConnectManager2.swift */,
 			);
 			path = FruitNinjaPhone;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC1C5F592AE6FBFE0015C5CF /* ViewController.swift in Sources */,
+				CC8CE72A2AF70691003467F0 /* ConnectManager2.swift in Sources */,
 				CC1C5F662AE6FE300015C5CF /* FruitGameScene.swift in Sources */,
 				CC1C5F572AE6FBFE0015C5CF /* AppDelegate.swift in Sources */,
 				CCFD62A22AF041A700F2E4C7 /* ConnectManager.swift in Sources */,

@@ -11,20 +11,31 @@ import CoreMotion
 import AVFoundation
 import MultipeerConnectivity
 
-class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
-    //from the conncetManager delegate function for receviemessage
-    func didReceiveMessage(_ message: String, from peer: MCPeerID) {
-        print(message)
-        if message != "Start"{
-            moveShurikenFromPhone(message: message)
-            print("message:\(message)")
+class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManager2Delegate{
+    func websocketDidConnect() {
+        
+    }
+    
+    func websocketDidDisconnect(error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(text: String) {
+        receiveMessage(mes: text)
+    }
+    
+    func receiveMessage(mes:String){
+        print(mes)
+        if mes != "Start"{
+            moveShurikenFromPhone(message: mes)
+            print("message:\(mes)")
             print("position:\(playerNode.position)")
         } else{
             pauseAndRestart()
         }
     }
     
-    func didChangeConnectionState(peer: MCPeerID, isConnected: Bool) {
+    func sendMessage(ms:String){
         
     }
     
@@ -73,7 +84,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
       
       // the skview is initialed and add the player , set the initial setting into scence
       override func didMove(to view: SKView) {
-        ConnectManager.shared.delegate = self
+        ConnectManager2.shared.delegate=self
   
         startGame()
           // start Core Motion
@@ -126,9 +137,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
           timer?.invalidate()
           timer=nil
            scoreLabel.fontSize = scoreLabel.fontSize*4
-          if let peers=ConnectManager.shared.session?.connectedPeers{
-              ConnectManager.shared.send(message: "gameover", to: peers)
-          }
+          sendMessage(ms: "GameOver")
       }
       
       
@@ -208,9 +217,7 @@ class FruitGameScene:SKScene, SKPhysicsContactDelegate,ConnectManagerDelegate{
           if isPaused==false && gameRunning==true{
               scoreNow=scoreNow+1
               playHitSound()
-              if let peers=ConnectManager.shared.session?.connectedPeers{
-                  ConnectManager.shared.send(message: "hit", to: peers)
-              }
+            sendMessage(ms: "hit")
               
               fruit.removeFromParent()
           }
