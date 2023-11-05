@@ -60,20 +60,19 @@ class ViewController: NSViewController , ConnectManager2Delegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let serverURL = URL(string: "http://127.0.0.1:8080")!
+        let serverURL = URL(string: "ws://127.0.0.1:8888/websocket")!
         // Set up the ConnectManager2 with a URL
         ConnectManager2.shared.configure(with: serverURL)
 
         // Connect to the WebSocket server
-        ConnectManager2.shared.connect()
         ConnectManager2.shared.delegate=self
+        ConnectManager2.shared.connect()
+        
 
         // Send a message
-        ConnectManager2.shared.send(message: "Hello, server!")
+        ConnectManager2.shared.send(message: "MacBook online")
 
         
-        
-       
         // Do any additional setup after loading the view.
     }
     
